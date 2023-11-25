@@ -56,7 +56,69 @@ const all = (req, res) => {
             })
         })
 }
-module.exports = { add, all }
+const single = (req, res) => {
+    let validation = ''
+    if (!req.body._id)
+        validation += '_id is required'
+
+    if (!!validation)
+        res.send({
+            success: false,
+            status: 400,
+            message: validation
+        })
+    else
+        Theme.findOne({ _id: req.body._id }).exec()
+            .then(data => {
+                if (data == null)
+                    res.send({ success: false, status: 500, message: 'Theme Not Found' })
+                else
+                    res.send({ success: true, status: 200, message: 'Single Document Loaded', data: data })
+
+            })
+            .catch(err => {
+                res.send({ success: false, status: 500, message: err.message })
+            })
+
+}
+
+
+const update = (req, res) => {
+    let validation = ''
+    if (!req.body._id)
+        validation += '_id is required'
+
+    if (!!validation)
+        res.send({ success: false, status: 400, message: validation })
+    else {
+        Theme.findOne({ _id: req.body._id }).exec()
+            .then(data => {
+                if (data == null) {
+                    res.send({ success: false, status: 500, message: "Theme does not exist" })
+                }
+                else {
+                    if(!req.body.name) data.name = req.body.name
+                    if(!req.body.description) data.description = req.body.description
+
+                    data.save()
+                        .then(savedData => {
+                            res.send({ success: true, status: 200, message: "Catgeory Updated", data: savedData })
+                        }).catch(err => {
+                            res.send({ success: false, status: 500, message: err.message })
+                        })
+                }
+
+            })
+            .catch(err => {
+                res.send({ success: false, status: 500, message: err.message })
+            })
+    }
+}
+
+
+module.exports = { add, all, single, update }
+
+// Path: server/apis/theme/themeRoutes.js
 
 
 
