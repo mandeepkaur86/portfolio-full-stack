@@ -1,8 +1,27 @@
-# PortfolioFullStack
+
+**Using Git locally**
+-Creating a git repository using: git init
+
+-The .git folder that stores all your changes
+
+-Basic command line commands navigate through directories, move files, and delete files: cd, mv, rm, mkdir
+
+-Showing the status of your repository using: git status
+
+**we have some install library**
+npm i -g nodemon
+npx create-react-app storyapp-full-stack
+npm i express
+
+
+**connect to db**
+npm i monogoose
+
+
+# StoryApp-FullStack
 
 ## purpose 
-A portfolio can help illustrate your professional accomplishment ,abilities,and activities .
-The portfolio also serves as a marketing tool,preview of your performance.This app was designed with the user in mind. We made a point to focus on making the app visually pleasing with a smooth transition from one screen to the next. Our ultimate goal is to maintain optimal backend functionality that translates to a seamless front-end.
+The purpose of a storyApp is to provide a platform where users can discover,engage with and contribute to collection of stories.The app aims to cater to both adminstratores and readers each with their own set of functionalities.
 
 ## Technology and Tools Used
 1. express
