@@ -114,11 +114,43 @@ const update = (req, res) => {
             })
     }
 }
+const deletion = (req, res) => {
+    let validation = ''
+    if (!req.body._id)
+        validation += '_id is required'
+
+    if (!!validation)
+        res.send({
+            success: false,
+            status: 400,
+            message: validation
+        })
+    else
+        Theme.findOne({ _id: req.body._id })
+            .exec()
+            .then(data => {
+                if (data == null)
+                    res.send({ success: false, status: 500, message: "Theme does not exist" })
+                else {
+                    data.status = false
+                    data.save()
+                        .then(() => {
+                            res.send({ success: true, status: 200, message: "Document Deleted" })
+                        })
+                        .catch(err => {
+                            res.send({ success: false, status: 500, message: err.message })
+                        })
+                }
+            })
+            .catch(err => {
+                res.send({ success: false, status: 500, message: err.message })
+            })
+}
 
 
-module.exports = { add, all, single, update }
+module.exports = { add, all, single, update, deletion }
 
-// Path: server/apis/theme/themeRoutes.js
+
 
 
 

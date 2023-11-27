@@ -9,6 +9,12 @@ app.get('/',(req, res)=>{
     res.send("Welcome To Story App Server")
 })
 
+const adminRoutes = require('./routes/adminRoutes')
+app.use('/admin',adminRoutes)
+
+
+
+
 
 app.listen(6001, (err)=>{
     if(err){
