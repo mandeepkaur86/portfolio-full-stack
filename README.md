@@ -8,7 +8,7 @@
 
 -Showing the status of your repository using: git status
 
-**we have some install library**
+## we have some install library
 npm i -g nodemon
 npx create-react-app storyapp-full-stack
 npm i express
