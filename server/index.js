@@ -3,7 +3,8 @@ const app = express()
 const db = require('./config/db')
 const seed = require('./config/seed')
 
-
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 
 app.get('/',(req, res)=>{
     res.send("Welcome To Story App Server")
