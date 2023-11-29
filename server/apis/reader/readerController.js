@@ -104,6 +104,60 @@ const single = (req, res) => {
             })
 
 }
+const update = (req, res)=>{
+    let validation = ''
+    if (!req.body._id)
+        validation += '_id is required'
 
-module.exports = { register, all, single }
+    if (!!validation)
+        res.send({
+            success: false,
+            status: 400,
+            message: validation
+        })
+    else{
+        User.findOne({ _id: req.body._id }).exec()
+            .then(async data => {
+                let prevUser =await User.findOne({$and:[{email:req.body.email},{_id:{$ne:req.body._id}}]})
+                if(!!prevUser){
+                    res.send({ success: false, status: 400, message:"Email Already Exists" })
+                }
+                else{
+                    if(!!req.body.name) data.name = req.body.name
+                    if(!!req.body.email) data.email = req.body.email
+
+                    data.save().then(savedUser=>{
+                        Reader.findOne({userId:req.body._id}).exec()
+                        .then(readerData=>{
+                            if(!!req.body.name) readerData.name = req.body.name
+                            if(!!req.body.email) readerData.email = req.body.email
+                            if(!!req.body.contact) readerData.contact = req.body.contact
+                            readerData.save().then(savedReader=>{
+                                res.send({ success: true, status: 200, message: "Profile Updated", data:savedReader })
+                            }).catch(err => {
+                                res.send({ success: false, status: 500, message: err.message })
+                            })
+                        })
+                        .catch(err => {
+                            res.send({ success: false, status: 500, message: err.message })
+                        })
+                    })
+                    .catch(err => {
+                        res.send({ success: false, status: 500, message: err.message })
+                    })
+                }
+            })
+            .catch(err => {
+                res.send({ success: false, status: 500, message: err.message })
+            })
+    }
+        
+
+}
+
+
+module.exports = { register, all, single, update }
+
+
+
 

@@ -9,7 +9,8 @@ const readerController = require('../apis/reader/readerController')
 router.post('/register', readerController.register)
 router.post('/reader/single', readerController.single)
 
-
+//profile
+router.post('/updateProfile', readerController.update)
 
 // theme routes
 router.post('/theme/all', themeController.all)

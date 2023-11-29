@@ -12,6 +12,7 @@
 npm i -g nodemon
 npx create-react-app storyapp-full-stack
 npm i express
+npm i bcrypt
 
 
 **connect to db**
