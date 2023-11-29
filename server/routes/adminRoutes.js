@@ -4,6 +4,10 @@ const themeController = require('../apis/theme/themeController')
 const storyController = require('../apis/story/storyController')
 const feedbackController = require('../apis/feedback/feedbackController')
 const readerController = require('../apis/reader/readerController')
+const userController = require('../apis/user/userController')
+
+
+router.post('/login', userController.login)
 
 
 

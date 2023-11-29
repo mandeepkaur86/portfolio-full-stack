@@ -4,12 +4,17 @@ const themeController = require('../apis/theme/themeController')
 const storyController = require('../apis/story/storyController')
 const feedbackController = require('../apis/feedback/feedbackController')
 const readerController = require('../apis/reader/readerController')
+const userController = require('../apis/user/userController')
+
+router.post('/login', userController.login)
+
 
 //auth
 router.post('/register', readerController.register)
 router.post('/reader/single', readerController.single)
 
 //profile
+router.post('/profile', readerController.single)
 router.post('/updateProfile', readerController.update)
 
 // theme routes
