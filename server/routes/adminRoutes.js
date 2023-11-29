@@ -3,6 +3,15 @@ const router = express.Router()
 const themeController = require('../apis/theme/themeController')
 const storyController = require('../apis/story/storyController')
 const feedbackController = require('../apis/feedback/feedbackController')
+const readerController = require('../apis/reader/readerController')
+
+
+
+//reader routes
+router.post('/reader/all', readerController.all)
+router.post('/reader/single', readerController.single)
+//reader routes
+
 
 
 

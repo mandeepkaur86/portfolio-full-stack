@@ -3,6 +3,12 @@ const router = express.Router()
 const themeController = require('../apis/theme/themeController')
 const storyController = require('../apis/story/storyController')
 const feedbackController = require('../apis/feedback/feedbackController')
+const readerController = require('../apis/reader/readerController')
+
+//auth
+router.post('/register', readerController.register)
+router.post('/reader/single', readerController.single)
+
 
 
 // theme routes
