@@ -13,6 +13,10 @@ app.get('/',(req, res)=>{
 const adminRoutes = require('./routes/adminRoutes')
 app.use('/admin',adminRoutes)
 
+const readerRoutes = require('./routes/readerRoutes')
+app.use('/reader',readerRoutes)
+
+
 
 
 
