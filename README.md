@@ -23,6 +23,29 @@ npm i monogoose
 ## purpose 
 The purpose of a storyApp is to provide a platform where users can discover,engage with and contribute to collection of stories.The app aims to cater to both adminstratores and readers each with their own set of functionalities.
 
+Admin: Users with administrative privileges ( Editing, adding or
+deleting a Story)
+Reader: Users who explore and engage with the stories
+
+Admin Functionalities:
+Login
+Dashboard
+Add/Manage story themes
+Add/Manage stories
+view user's Feedback
+List of readers
+Logout
+
+
+Reader Functionalities:
+Home Page
+Themes
+stories(if unauthenticated can read only one story otherwise access to all stories)
+Register
+Login
+Give Feedback On website (if authenticated )
+Logout
+
 ## Technology and Tools Used
 1. express
 2. node.js
