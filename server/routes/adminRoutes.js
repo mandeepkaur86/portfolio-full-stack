@@ -8,12 +8,13 @@ const userController = require('../apis/user/userController')
 
 
 router.post('/login', userController.login)
-
+router.post('/changePassword', userController.changePassword)
 
 
 //reader routes
 router.post('/reader/all', readerController.all)
 router.post('/reader/single', readerController.single)
+router.post('/reader/changeStatus', userController.changeStatus)
 //reader routes
 
 

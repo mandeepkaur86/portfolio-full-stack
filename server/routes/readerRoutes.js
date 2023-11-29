@@ -7,7 +7,7 @@ const readerController = require('../apis/reader/readerController')
 const userController = require('../apis/user/userController')
 
 router.post('/login', userController.login)
-
+router.post('/changePassword', userController.changePassword)
 
 //auth
 router.post('/register', readerController.register)

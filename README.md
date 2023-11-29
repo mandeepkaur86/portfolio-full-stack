@@ -12,7 +12,8 @@
 npm i -g nodemon
 npx create-react-app storyapp-full-stack
 npm i express
-npm i bcrypt
+npm i bcrypt(secure the password)
+npm i multer(we can use this command fileupload)
 
 
 **connect to db**
