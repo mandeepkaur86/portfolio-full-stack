@@ -9,9 +9,10 @@ const userController = require('../apis/user/userController')
 
 
 router.post('/login', userController.login)
+
+//router.use(require('../middleware/tokenChecker'))
+
 router.post('/changePassword', userController.changePassword)
-
-
 //reader routes
 router.post('/reader/all', readerController.all)
 router.post('/reader/single', readerController.single)
@@ -55,14 +56,11 @@ router.post('/story/update', storyUpload.single('image'), storyController.update
 router.post('/story/delete', storyController.deletion)
 // story routes
 
-
-
 // feedback routes
 router.post('/feedback/all', feedbackController.all)
 router.post('/feedback/single', feedbackController.single)
 router.post('/feedback/delete', feedbackController.deletion)
 // feedback routes
-
 
 router.all('*',(req, res)=>{
     res.send({
@@ -73,4 +71,9 @@ router.all('*',(req, res)=>{
 })
 
 module.exports = router
+
+
+
+
+
 

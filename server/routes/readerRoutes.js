@@ -6,16 +6,8 @@ const feedbackController = require('../apis/feedback/feedbackController')
 const readerController = require('../apis/reader/readerController')
 const userController = require('../apis/user/userController')
 
-router.post('/login', userController.login)
-router.post('/changePassword', userController.changePassword)
-
-//auth
 router.post('/register', readerController.register)
-router.post('/reader/single', readerController.single)
-
-//profile
-router.post('/profile', readerController.single)
-router.post('/updateProfile', readerController.update)
+router.post('/login', userController.login)
 
 // theme routes
 router.post('/theme/all', themeController.all)
@@ -26,6 +18,18 @@ router.post('/theme/single', themeController.single)
 router.post('/story/all', storyController.all)
 router.post('/story/single', storyController.single)
 // story routes
+
+
+// middleware
+//router.use(require('../middleware/tokenChecker'))
+
+
+
+
+//auth
+router.post('/changePassword', userController.changePassword)
+router.post('/profile', readerController.single)
+router.post('/updateProfile', readerController.update)
 
 // feedback routes
 router.post('/feedback/add', feedbackController.add)

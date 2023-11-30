@@ -9,11 +9,12 @@
 -Showing the status of your repository using: git status
 
 ## we have some install library
-npm i -g nodemon
-npx create-react-app storyapp-full-stack
-npm i express
-npm i bcrypt(secure the password)
-npm i multer(we can use this command fileupload)
+1. npm i -g nodemon
+2. npx create-react-app storyapp-full-stack
+3. npm i express
+4. npm i bcrypt(secure the password)
+5. npm i multer(we can use this command fileupload)
+6. npm i jsonwebtoken(secure to api)
 
 
 **connect to db**
