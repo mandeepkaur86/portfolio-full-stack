@@ -1,5 +1,5 @@
 const User = require('../user/userModel')
-const Reader = ('./readerModel.js')
+const Reader = require('./readerModel.js')
 const bcrypt = require('bcrypt')
 
 const register =async (req, res)=>{

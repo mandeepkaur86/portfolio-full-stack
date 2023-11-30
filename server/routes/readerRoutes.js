@@ -21,10 +21,7 @@ router.post('/story/single', storyController.single)
 
 
 // middleware
-//router.use(require('../middleware/tokenChecker'))
-
-
-
+router.use(require('../middleware/tokenChecker'))
 
 //auth
 router.post('/changePassword', userController.changePassword)

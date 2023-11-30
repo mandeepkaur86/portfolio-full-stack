@@ -10,7 +10,7 @@ const userController = require('../apis/user/userController')
 
 router.post('/login', userController.login)
 
-//router.use(require('../middleware/tokenChecker'))
+router.use(require('../middleware/tokenChecker'))
 
 router.post('/changePassword', userController.changePassword)
 //reader routes
