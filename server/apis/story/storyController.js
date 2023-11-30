@@ -12,6 +12,9 @@ const add = async (req, res) => {
         validation += "story is Required"
     if (!req.body.themeId)
         validation += "themeId is Required"
+        if (!req.file)
+        validation += "image is Required"
+
 
     if (!!validation)
         res.send({ success: false, status: 400, message: validation })
@@ -24,6 +27,7 @@ const add = async (req, res) => {
         newStory.author = req.body.author
         newStory.story = req.body.story
         newStory.themeId = req.body.themeId
+        newStory.image = 'story/'+ req.file.filename
 
         newStory.save()
             .then((storyData) => {
@@ -114,6 +118,8 @@ const update = (req, res) => {
                     if(!!req.body.author) data.author = req.body.author
                     if(!!req.body.story) data.story = req.body.story
                     if(!!req.body.themeId) data.themeId = req.body.themeId
+                    if(!!req.file) data.image = 'story/'+ req.file.filename
+
 
                     data.save()
                         .then(savedData => {

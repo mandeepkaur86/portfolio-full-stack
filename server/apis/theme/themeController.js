@@ -4,6 +4,7 @@ const add = async (req, res) => {
   let validation = "";
   if (!req.body.name) validation += "name is Required";
   if (!req.body.description) validation += "description is Required";
+  if (!req.file)validation += "image is Required"
 
   if (!!validation)
     res.send({ success: false, status: 400, message: validation });
@@ -15,6 +16,7 @@ const add = async (req, res) => {
       newTheme.autoId = total + 1;
       newTheme.name = req.body.name;
       newTheme.description = req.body.description;
+      newTheme.image = 'theme/'+ req.file.filename
 
       newTheme
         .save()
@@ -112,6 +114,8 @@ const update = (req, res) => {
                     if (prev == null) {
                         if (!!req.body.name) data.name = req.body.name
                         if (!!req.body.description) data.description = req.body.description
+                        if (!!req.file) data.image = 'theme/'+ req.file.filename
+
 
                         data.save()
                             .then(savedData => {

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const storySchema = new mongoose.Schema({
     autoId:{type:Number, default:0},
     name:{type:String, default:''},
-    image:{type:String, default:''},
+    image:{type:String, default:'story/no_img.png'},
     description:{type:String, default:''},
     author:{ type:String, default:''},
     story:{ type:String, default:''},
