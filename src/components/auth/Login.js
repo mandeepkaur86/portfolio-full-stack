@@ -1,4 +1,42 @@
+import { useState } from "react"
+import ApiServices from "../services/ApiServices"
+import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 export default function Login(){
+    const [email,setEmail]=useState("")
+    const [password,setPassword]=useState("")
+    const [load,setLoad]=useState(false)
+    const nav=useNavigate()
+    const handleForm=(e)=>{
+        e.preventDefault()
+        let data={
+            email:email,
+            password:password
+        }
+        ApiServices.login(data).then(
+            (res)=>{
+                if(res.data.success){
+                    sessionStorage.setItem("token",res.data.token)
+                    sessionStorage.setItem("userType",res.data.data.userType)
+                    sessionStorage.setItem("email",res.data.data.email)
+                    sessionStorage.setItem("userId",res.data.data._id)
+                    toast.success(res.data.message)
+                    if(res.data.data.userType==1){
+                        nav("/admin")
+                    }
+                    else{
+                        nav("/")
+                    }
+                }
+                else{
+                    toast.error(res.data.message)
+                    setTimeout(()=>{
+                        setLoad(false)
+                    },2000)
+                }
+            }
+        )
+    }
     return(
         <>
             <div className="container-fluid bg-primary py-5 mb-5 page-header">
@@ -35,13 +73,13 @@ export default function Login(){
             <div className="container-xxl">
                 <div className="row">
                     <div className="col-md-9 offset-md-2">
-                    <form>
+                    <form onSubmit={handleForm}>
                         <div className="row">
                             <div className="col-md-2">
                                 <label>Email</label>
                             </div>
                             <div className="col-md-8">
-                                <input className="form-control" placeholder="Enter Email"/>
+                                <input className="form-control" placeholder="Enter Email" value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
                             </div>
                         </div>
                         <div className="row my-2">
@@ -49,7 +87,7 @@ export default function Login(){
                                 <label>Password</label>
                             </div>
                             <div className="col-md-8">
-                                <input className="form-control" placeholder="Enter Password"/>
+                                <input className="form-control" placeholder="Enter Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                             </div>
                         </div>
                         <button className="btn btn-primary d-block mx-auto w-25">Login</button>
