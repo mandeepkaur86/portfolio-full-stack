@@ -7,7 +7,8 @@
 -Basic command line commands navigate through directories, move files, and delete files: cd, mv, rm, mkdir
 
 -Showing the status of your repository using: git status
-
+-when we run run frontend we will use command --npm start
+-when we use backendend use command --nodemon
 ## we have some install library
 1. npm i -g nodemon
 2. npx create-react-app storyapp-full-stack
@@ -15,11 +16,13 @@
 4. npm i bcrypt(secure the password)
 5. npm i multer(we can use this command fileupload)
 6. npm i jsonwebtoken(secure to api)
-
+7. npm i axios
+8. npm i react toastify(short message popup)
 
 **connect to db**
 npm i monogoose
-
+**deploy**
+render.com
 
 # StoryApp-FullStack
 
@@ -55,4 +58,6 @@ Logout
 3. react
 4. Mongo db(MERN)
 
-
+## design 
+1. template slicing
+2. bootstrap
