@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import Master from './components/layout/Master';
 import Login from './components/auth/Login';
 import AddThemes from './components/admin/themes/AddThemes';
+import ManageThemes from './components/admin/themes/ManageThemes';
 
 function App() {
   return (
@@ -16,7 +17,10 @@ function App() {
           <Route path='/login' element={<Login/>}/>
         </Route>
         <Route path='/admin' element={<AdminMaster/>}>
-          <Route path='/admin/addTheme' element={<AddThemes/>}/>
+          <Route path='/admin' element={<Dashboard/>}/>
+          <Route path='/admin/viewThemes' element={<ManageThemes/>}/>
+          <Route path='/admin/addThemes' element={<AddThemes/>}/>
+          <Route path='/admin/updateThemes/:id' element={<UpdateThemes/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
