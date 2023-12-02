@@ -6,7 +6,9 @@ import Master from './components/layout/Master';
 import Login from './components/auth/Login';
 import AddThemes from './components/admin/themes/AddThemes';
 import ManageThemes from './components/admin/themes/ManageThemes';
-
+import AdminMaster from './components/layout/AdminMaster';
+import Dashboard from './components/admin/Dashboard';
+import UpdateThemes from "./components/admin/themes/UpdateThemes"
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +23,9 @@ function App() {
           <Route path='/admin/viewThemes' element={<ManageThemes/>}/>
           <Route path='/admin/addThemes' element={<AddThemes/>}/>
           <Route path='/admin/updateThemes/:id' element={<UpdateThemes/>}/>
+          <Route path='/admin/addStory' element={<AddStory/>}/>
+          <Route path='/admin/viewStory' element={<ManageStory/>}/>
+          <Route path='/admin/updateStory/:id' element={<UpdateStory/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

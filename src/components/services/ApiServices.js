@@ -35,5 +35,35 @@ class ApiServices{
         }
         return axios.post(BASE_URL+"/admin/theme/single",qs.stringify(data),{headers:header})
     }
+    addStory(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/story/add",data,{headers:header})
+    }
+    getAllStory(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/story/all",qs.stringify(data),{headers:header})
+    }
+    deleteStory(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/story/delete",qs.stringify(data),{headers:header})
+    }
+    updateStory(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/story/update",data,{headers:header})
+    }
+    singleStory(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/story/single",qs.stringify(data),{headers:header})
+    }
 }
 export default new ApiServices
