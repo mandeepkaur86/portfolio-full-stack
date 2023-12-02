@@ -4,8 +4,8 @@ const add = async (req, res) => {
     let validation = ""
     if (!req.body.feedback)
         validation += "feedback is Required"
-    if (!req.body.themeId)
-        validation += "themeId is Required"
+    if (!req.body.storyId)
+        validation += "storyId is Required"
     if (!req.body.userId)
         validation += "userId is Required"
 
@@ -16,7 +16,7 @@ const add = async (req, res) => {
         let newFeedback = new Feedback()
         newFeedback.autoId = total + 1
         newFeedback.feedback = req.body.feedback
-        newFeedback.themeId = req.body.themeId
+        newFeedback.storyId = req.body.storyId
         newFeedback.userId = req.body.userId
 
         newFeedback.save()

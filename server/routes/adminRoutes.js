@@ -6,6 +6,7 @@ const storyController = require('../apis/story/storyController')
 const feedbackController = require('../apis/feedback/feedbackController')
 const readerController = require('../apis/reader/readerController')
 const userController = require('../apis/user/userController')
+const dashboardController = require('../apis/dashboard/dashboardController')
 
 
 router.post('/login', userController.login)
@@ -13,6 +14,7 @@ router.post('/login', userController.login)
 router.use(require('../middleware/tokenChecker'))
 
 router.post('/changePassword', userController.changePassword)
+router.post('/dashboard', dashboardController.dashboard)
 //reader routes
 router.post('/reader/all', readerController.all)
 router.post('/reader/single', readerController.single)
