@@ -8,7 +8,7 @@
 
 -Showing the status of your repository using: git status
 -when we run run frontend we will use command --npm start
--when we use backendend use command --nodemon
+-when we use backend use command --nodemon
 ## we have some install library
 1. npm i -g nodemon
 2. npx create-react-app storyapp-full-stack
@@ -61,3 +61,9 @@ Logout
 ## design 
 1. template slicing
 2. bootstrap
+
+## Referances
+1. [Deployment guidlines](https://dashboard.render.com/web/srv-cllb38vq7omc73cjvao0/deploys/dep-cllbd338772c739t5adg)
+2. [Mern Stack youtube tutorial]()
+3. [Bootstrap CSS](https://getbootstrap.com/)
+4. [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
