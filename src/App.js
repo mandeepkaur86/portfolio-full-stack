@@ -26,6 +26,8 @@ function App() {
           <Route path='/admin/addStory' element={<AddStory/>}/>
           <Route path='/admin/viewStory' element={<ManageStory/>}/>
           <Route path='/admin/updateStory/:id' element={<UpdateStory/>}/>
+          <Route path='/admin/viewFeedback' element={<Feedback/>}/>
+          <Route path='/admin/viewReader' element={<ReaderList/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

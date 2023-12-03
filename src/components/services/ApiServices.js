@@ -65,5 +65,44 @@ class ApiServices{
         }
         return axios.post(BASE_URL+"/admin/story/single",qs.stringify(data),{headers:header})
     }
+    getAllReader(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/reader/all",qs.stringify(data),{headers:header})
+    }
+    getSingleReader(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/reader/single",qs.stringify(data),{headers:header})
+    }
+    changeStatusReader(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/reader/changeStatus",qs.stringify(data),{headers:header})
+    }
+    getAllfeedback(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/feedback/all",qs.stringify(data),{headers:header})
+    }
+    getSinglefeedback(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/feedback/single",qs.stringify(data),{headers:header})
+    }
+    deletefeedback(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/feedback/delete",qs.stringify(data),{headers:header})
+    }
+    register(data){
+        return axios.post(BASE_URL+"/reader/register",qs.stringify(data))
+    }
 }
 export default new ApiServices
