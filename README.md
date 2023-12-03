@@ -18,6 +18,7 @@
 6. npm i jsonwebtoken(secure to api)
 7. npm i axios
 8. npm i react toastify(short message popup)
+9. npm i react spinners
 
 **connect to db**
 npm i monogoose

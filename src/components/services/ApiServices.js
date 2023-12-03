@@ -104,5 +104,29 @@ class ApiServices{
     register(data){
         return axios.post(BASE_URL+"/reader/register",qs.stringify(data))
     }
+    getReaderStory(data){
+        return axios.post(BASE_URL+"/reader/story/all",qs.stringify(data))
+    }
+    getReaderTheme(data){
+        return axios.post(BASE_URL+"/reader/theme/all",qs.stringify(data))
+    }
+    singleReaderStory(data){
+        return axios.post(BASE_URL+"/reader/story/single",qs.stringify(data))
+    }
+    singleReaderTheme(data){
+        return axios.post(BASE_URL+"/reader/theme/single",qs.stringify(data))
+    }
+    addFeedback(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/reader/feedback/add",qs.stringify(data),{headers:header})
+    }
+    getReaderFeedback(data){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/reader/feedback/all",qs.stringify(data),{headers:header})
+    }
 }
 export default new ApiServices

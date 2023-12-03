@@ -17,6 +17,10 @@ import ReaderList from './components/admin/ReaderList';
 import Feedback from './components/admin/Feedback';
 import AdminLogin from './components/auth/AdminLogin';
 import Register from './components/auth/Register';
+import SingleStory from './components/readers/SingleStory';
+import Story from './components/readers/Story';
+import AddFeedback from './components/readers/AddFeedback';
+import ReaderFeedback from './components/readers/ReaderFeedback';
 
 function App() {
   return (
@@ -30,6 +34,9 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path='/story' element={<Story/>}/>
           <Route path='/viewstory/:id' element={<Story/>}/>
+          <Route path='/singleStory/:id' element={<SingleStory/>}/>
+          <Route path='/addFeedback/:id' element={<AddFeedback/>}/>
+          <Route path='/feedback' element={<ReaderFeedback/>}/>
         </Route>
         <Route path='/admin' element={<AdminMaster/>}>
           <Route path='/admin' element={<Dashboard/>}/>
