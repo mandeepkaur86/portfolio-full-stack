@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer(){
     return(
         <>
@@ -8,37 +10,34 @@ export default function Footer(){
             >
             <div className="container py-5">
                 <div className="row g-5">
-                <div className="col-lg-3 col-md-6">
-                    <h4 className="text-white mb-3">Quick Link</h4>
-                    <a className="btn btn-link" href="">
-                    About Us
-                    </a>
-                    <a className="btn btn-link" href="">
-                    Contact Us
-                    </a>
-                    <a className="btn btn-link" href="">
-                    Privacy Policy
-                    </a>
-                    <a className="btn btn-link" href="">
-                    Terms &amp; Condition
-                    </a>
-                    <a className="btn btn-link" href="">
-                    FAQs &amp; Help
-                    </a>
+                <div className="col-lg-6 col-md-6">
+                    <h4 className="text-white mb-3">Story App</h4>
+                    <Link className="btn btn-link" to="/">
+                    Home
+                    </Link>
+                    <Link className="btn btn-link" to="/themes">
+                    Themes
+                    </Link>
+                    <Link className="btn btn-link" to="/story">
+                    Stories
+                    </Link>
+                    <Link className="btn btn-link" to="/register">
+                    Register
+                    </Link>
                 </div>
-                <div className="col-lg-3 col-md-6">
+                <div className="col-lg-6 col-md-6">
                     <h4 className="text-white mb-3">Contact</h4>
                     <p className="mb-2">
                     <i className="fa fa-map-marker-alt me-3" />
-                    123 Street, New York, USA
+                    123 Street example,Canada
                     </p>
                     <p className="mb-2">
                     <i className="fa fa-phone-alt me-3" />
-                    +012 345 67890
+                    00343943993
                     </p>
                     <p className="mb-2">
                     <i className="fa fa-envelope me-3" />
-                    info@example.com
+                    info@storyapp.com
                     </p>
                     <div className="d-flex pt-2">
                     <a className="btn btn-outline-light btn-social" href="">
@@ -55,70 +54,8 @@ export default function Footer(){
                     </a>
                     </div>
                 </div>
-                <div className="col-lg-3 col-md-6">
-                    <h4 className="text-white mb-3">Gallery</h4>
-                    <div className="row g-2 pt-2">
-                    <div className="col-4">
-                        <img
-                        className="img-fluid bg-light p-1"
-                        src="img/course-1.jpg"
-                        alt=""
-                        />
-                    </div>
-                    <div className="col-4">
-                        <img
-                        className="img-fluid bg-light p-1"
-                        src="img/course-2.jpg"
-                        alt=""
-                        />
-                    </div>
-                    <div className="col-4">
-                        <img
-                        className="img-fluid bg-light p-1"
-                        src="img/course-3.jpg"
-                        alt=""
-                        />
-                    </div>
-                    <div className="col-4">
-                        <img
-                        className="img-fluid bg-light p-1"
-                        src="img/course-2.jpg"
-                        alt=""
-                        />
-                    </div>
-                    <div className="col-4">
-                        <img
-                        className="img-fluid bg-light p-1"
-                        src="img/course-3.jpg"
-                        alt=""
-                        />
-                    </div>
-                    <div className="col-4">
-                        <img
-                        className="img-fluid bg-light p-1"
-                        src="img/course-1.jpg"
-                        alt=""
-                        />
-                    </div>
-                    </div>
-                </div>
-                <div className="col-lg-3 col-md-6">
-                    <h4 className="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div className="position-relative mx-auto" style={{ maxWidth: 400 }}>
-                    <input
-                        className="form-control border-0 w-100 py-3 ps-4 pe-5"
-                        type="text"
-                        placeholder="Your email"
-                    />
-                    <button
-                        type="button"
-                        className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
-                    >
-                        SignUp
-                    </button>
-                    </div>
-                </div>
+             
+              
                 </div>
             </div>
             <div className="container">
@@ -127,27 +64,14 @@ export default function Footer(){
                     <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
                     ©{" "}
                     <a className="border-bottom" href="#">
-                        Your Site Name
+                        StoryApp
                     </a>
                     , All Right Reserved.
-                    {/*/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. *** /*/}
-                    Designed By{" "}
-                    <a className="border-bottom" href="https://htmlcodex.com">
-                        HTML Codex
-                    </a>
-                    <br />
-                    <br />
-                    Distributed By{" "}
-                    <a className="border-bottom" href="https://themewagon.com">
-                        ThemeWagon
-                    </a>
                     </div>
                     <div className="col-md-6 text-center text-md-end">
                     <div className="footer-menu">
-                        <a href="">Home</a>
-                        <a href="">Cookies</a>
-                        <a href="">Help</a>
-                        <a href="">FQAs</a>
+                    <Link  to="/">Home</Link>
+                        <Link  to="/adminLogin">Admin Login</Link>
                     </div>
                     </div>
                 </div>
