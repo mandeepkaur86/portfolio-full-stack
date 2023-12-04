@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { ClipLoader } from "react-spinners"
-import { Link } from "react-router-dom"
-import ApiServices from "../services/ApiServices"
+import { Link, useParams } from "react-router-dom"
+import ApiServices, { BASE_URL } from "../services/ApiServices"
+
 export default function Story(){
     const [load,setLoad]=useState(true)
     const [data,setData]=useState([])
@@ -10,8 +11,19 @@ export default function Story(){
         display:"block",
         margin:"0px auto",
     }
+    const token=sessionStorage.getItem("token")
+    const param=useParams()
+    const themeId=param.id
     useEffect(()=>{
-        ApiServices.getAllStory().then(
+        if(!!themeId){
+            var data={
+                themeId:themeId
+            }
+        }
+        else{
+            var data={}
+        }
+        ApiServices.getReaderStory(data).then(
             (res)=>{
                 if(res.data.success){
                     setData(res.data.data)
@@ -70,7 +82,25 @@ export default function Story(){
             </div>
         <ClipLoader loading={load} cssOverride={obj} size={100} />
         <div className={load ? "disabled container" :"container"}>
-            
+        <div className="row">
+                {
+                    data?.map((el,index)=>(
+                        <div className="col-md-4  p-4" key={index}>
+                            <div className="card ">
+                                <img src={BASE_URL+"/"+el?.image} style={{height:"250px"}} className="card-img-top"/>
+                                <div className="card-body">
+                                    <h3 className="card-title" style={{height:"50px"}}>{el?.name}</h3>
+                                    <p style={{textOverflow:"ellipsis",height:"50px",overflow:"hidden",}}>{el?.description}</p>
+                                    <Link className="btn btn-primary" to={
+                                        !!token || index==0?`/singleStory/${el?._id}`:"/login"
+                                    }>View Story</Link>
+                                </div>
+                                
+                            </div>
+                        </div>
+                ))}
+            </div>
+   
             
 
         </div>

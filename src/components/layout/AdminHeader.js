@@ -8,7 +8,7 @@ export default function AdminHeader(){
       sessionStorage.clear()
       toast.success("Logout Successfully")
       setTimeout(()=>{
-        nav("/login")
+        nav("/adminLogin")
       })
     }
   }
@@ -21,7 +21,7 @@ export default function AdminHeader(){
             >
               <h2 className="m-0 text-primary">
                 <i className="fa fa-book me-3" />
-                Story App
+                Story App-Admin Panel
               </h2>
             </a>
             <button
@@ -35,18 +35,20 @@ export default function AdminHeader(){
             <div className="collapse navbar-collapse" id="navbarCollapse">
               <div className="navbar-nav ms-auto p-4 p-lg-0">
                 <Link to="/admin" className="nav-item nav-link">
-                  Home
+                  Dashboard
                 </Link>
                 <Link to="/admin/viewThemes" className="nav-item nav-link">
                   Themes
                 </Link>
                 <Link to="/admin/viewStory" className="nav-item nav-link">
-                  Themes
-                </Link>
-                <Link to="/admin/viewFeedback" className="nav-item nav-link">
-                  Feedback
+                Story
+
                 </Link>
                 <Link to="/admin/viewReader" className="nav-item nav-link">
+                Reader
+                </Link>
+                <Link to="/admin/viewFeedback" className="nav-item nav-link">
+
                   Feedback
                 </Link>
               </div>

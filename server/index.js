@@ -1,8 +1,11 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const db = require('./config/db')
-const seed = require('./config/seed')
 
+const seed = require('./config/seed')
+app.use(cors())
+app.use(express.static('server/public/'))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 

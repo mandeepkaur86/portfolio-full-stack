@@ -114,7 +114,7 @@ export default function UpdateThemes(){
                 </div>
                 </div>
             </div>
-        <ClipLoader loading={load} cssOverride={obj} size={"75"} />
+        <ClipLoader loading={load} cssOverride={obj} size={100} />
         <div className={load && "disabled"}>
             <div className="container-xxl">
                 <div className="row my-3">

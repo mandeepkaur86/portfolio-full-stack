@@ -65,6 +65,6 @@ Logout
 
 ## Referances
 1. [Deployment guidlines](https://dashboard.render.com/web/srv-cllb38vq7omc73cjvao0/deploys/dep-cllbd338772c739t5adg)
-2. [Mern Stack youtube tutorial]()
+2. [Mern Stack youtube tutorial](https://www.youtube.com/watch?v=CvCiNeLnZ00&t=26676s)
 3. [Bootstrap CSS](https://getbootstrap.com/)
 4. [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

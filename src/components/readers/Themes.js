@@ -11,7 +11,8 @@ export default function Themes(){
         margin:"0px auto",
     }
     useEffect(()=>{
-        ApiServices.getAllThemes().then(
+        ApiServices.getReaderTheme().then(
+
             (res)=>{
                 if(res.data.success){
                     setData(res.data.data)

@@ -118,6 +118,7 @@ export default function Feedback(){
                                 <td>{index+1}</td>
                                 <td>{el?.userId?.name}</td>
                                 <td>{el?.storyId?.name}</td>
+                                <td>{el?.feedback}</td>
                                 <td>
                                 <i className="bi bi-trash fs-3 text-danger" onClick={()=>{deleteFeedback(el?._id)}}></i>
                                 </td>

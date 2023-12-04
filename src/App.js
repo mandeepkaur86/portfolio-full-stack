@@ -4,13 +4,15 @@ import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Master from './components/layout/Master';
 import Login from './components/auth/Login';
+import AdminMaster from './components/layout/AdminMaster';
+import Dashboard from './components/admin/Dashboard';
 
 import AddThemes from './components/admin/themes/AddThemes';
 import ManageThemes from './components/admin/themes/ManageThemes';
 import AddStory from './components/admin/stories/AddStory';
 import ManageStory from "./components/admin/stories/ManageStory"
-import AdminMaster from './components/layout/AdminMaster';
-import Dashboard from './components/admin/Dashboard';
+
+import Themes from './components/readers/Themes';
 import UpdateThemes from "./components/admin/themes/UpdateThemes"
 import UpdateStory from "./components/admin/stories/UpdateStory"
 import ReaderList from './components/admin/ReaderList';
@@ -30,6 +32,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/themes' element={<Themes/>}/>
           <Route path='/adminLogin' element={<AdminLogin/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/story' element={<Story/>}/>

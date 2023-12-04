@@ -38,25 +38,26 @@ export default function Header(){
                 <Link to="/" className="nav-item nav-link">
                   Home
                 </Link>
-                <Link to="/themes" className="nav-item nav-link active">
+                <Link to="/themes" className="nav-item nav-link ">
                   Themes
                 </Link>
                 <Link to="/story" className="nav-item nav-link">
                   Story
                 </Link>
+                {!!token ? 
+              <>
                 <Link to="/feedback" className="nav-item nav-link">
-                  Contact
+                  FEEDBACK
                 </Link>
-              </div>
-              {!!token ? 
-              <a href="#" onClick={logout} className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
-              Logout
-              <i className="fa fa-arrow-right ms-3" />
-              </a>
+                <a href="#" onClick={logout} className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                  Logout
+                  <i className="fa fa-arrow-right ms-3" />
+                </a>
+              </>
               :
               <>
-              <Link to="/register" className="nav-item nav-link">
-                  Register
+              <Link to="/register" className=" nav-item nav-link">
+                  REGISTER
               </Link>
               <Link to="/login" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
               Login
@@ -65,6 +66,8 @@ export default function Header(){
               </>
               
               }
+              </div>
+              
               
             </div>
           </nav>

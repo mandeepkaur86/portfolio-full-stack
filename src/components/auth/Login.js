@@ -23,6 +23,7 @@ export default function Login(){
                     sessionStorage.setItem("email",res.data.data.email)
                     sessionStorage.setItem("userId",res.data.data._id)
                     toast.success(res.data.message)
+                    if(res.data.data)
                     setTimeout(()=>{
                         nav("/")
                     },1500)

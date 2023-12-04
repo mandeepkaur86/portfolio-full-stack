@@ -92,7 +92,7 @@ export default function ManageThemes(){
                 </div>
                 </div>
             </div>
-        <ClipLoader loading={load} cssOverride={obj} size={"75"} />
+        <ClipLoader loading={load} cssOverride={obj} size={100} />
         <div className={load ? "disabled container table-responsive" :"container table-responsive"}>
             <div className="d-flex justify-content-end mb-3">
                 <Link className="btn btn-danger " to="/admin/addThemes">Add New</Link>

@@ -128,5 +128,12 @@ class ApiServices{
         }
         return axios.post(BASE_URL+"/reader/feedback/all",qs.stringify(data),{headers:header})
     }
+    dashboard(){
+        let header={
+            Authorization:sessionStorage.getItem("token")
+        }
+        return axios.post(BASE_URL+"/admin/dashboard",{},{headers:header})
+    }
+
 }
 export default new ApiServices
