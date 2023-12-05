@@ -19,7 +19,7 @@
 7. npm i axios
 8. npm i react toastify(short message popup)
 9. npm i react spinners
-
+10. npm i cors
 **connect to db**
 npm i monogoose
 **deploy**
@@ -34,7 +34,7 @@ Admin: Users with administrative privileges ( Editing, adding or
 deleting a Story)
 Reader: Users who explore and engage with the stories
 
-Admin Functionalities:
+**Admin Functionalities:**
 Login
 Dashboard
 Add/Manage story themes
@@ -44,7 +44,7 @@ List of readers
 Logout
 
 
-Reader Functionalities:
+**Reader Functionalities:**
 Home Page
 Themes
 stories(if unauthenticated can read only one story otherwise access to all stories)
@@ -68,3 +68,8 @@ Logout
 2. [Mern Stack youtube tutorial](https://www.youtube.com/watch?v=CvCiNeLnZ00&t=26676s)
 3. [Bootstrap CSS](https://getbootstrap.com/)
 4. [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+## error resolve
+1. Copilot
+2. ChatGpt
+3. StackoverFlow

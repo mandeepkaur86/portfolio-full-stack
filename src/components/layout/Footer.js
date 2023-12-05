@@ -29,11 +29,11 @@ export default function Footer(){
                     <h4 className="text-white mb-3">Contact</h4>
                     <p className="mb-2">
                     <i className="fa fa-map-marker-alt me-3" />
-                    123 Street example,Canada
+                    123 Street example,Seattle, USA
                     </p>
                     <p className="mb-2">
                     <i className="fa fa-phone-alt me-3" />
-                    00343943993
+                    (206)234-5678
                     </p>
                     <p className="mb-2">
                     <i className="fa fa-envelope me-3" />
