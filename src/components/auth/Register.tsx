@@ -3,29 +3,29 @@ import ApiServices from "../services/ApiServices"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
-export default function Login(){
+import React from "react"
+export default function Register(){
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const [load,setLoad]=useState(false)
+    const [name,setName]=useState("")
+    const [contact,setContact]=useState("")
     const nav=useNavigate()
     const handleForm=(e)=>{
         setLoad(true)
         e.preventDefault()
         let data={
             email:email,
-            password:password
+            password:password,
+            name:name,
+            contact:contact
         }
-        ApiServices.adminlogin(data).then(
+        ApiServices.register(data).then(
             (res)=>{
                 if(res.data.success){
-                    sessionStorage.setItem("token",res.data.token)
-                    sessionStorage.setItem("userType",res.data.data.userType)
-                    sessionStorage.setItem("email",res.data.data.email)
-                    sessionStorage.setItem("userId",res.data.data._id)
                     toast.success(res.data.message)
-                    if(res.data.data)
                     setTimeout(()=>{
-                        nav("/")
+                        nav("/login")
                     },1500)
                 }
                 else{
@@ -55,7 +55,7 @@ export default function Login(){
                 <div className="row justify-content-center">
                     <div className="col-lg-10 text-center">
                     <h1 className="display-3 text-white animated slideInDown">
-                        Login
+                        Register
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb justify-content-center">
@@ -73,7 +73,7 @@ export default function Login(){
                             className="breadcrumb-item text-white active"
                             aria-current="page"
                         >
-                            Login
+                            Register
                         </li>
                         </ol>
                     </nav>
@@ -82,12 +82,20 @@ export default function Login(){
                 </div>
             </div>
         <ClipLoader loading={load} cssOverride={obj} size={100} />
-        <div className={load && "disabled"}>
+        <div className={load ? "": "disabled"}>
             <div className="container-xxl">
                 <div className="row">
                     <div className="col-md-9 offset-md-2">
                     <form onSubmit={handleForm}>
                         <div className="row">
+                            <div className="col-md-2">
+                                <label>Name</label>
+                            </div>
+                            <div className="col-md-8">
+                                <input className="form-control" type="name" placeholder="Enter Name" value={name} onChange={(e)=>{setName(e.target.value)}}/>
+                            </div>
+                        </div>
+                        <div className="row my-2">
                             <div className="col-md-2">
                                 <label>Email</label>
                             </div>
@@ -103,7 +111,15 @@ export default function Login(){
                                 <input className="form-control" placeholder="Enter Password" type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                             </div>
                         </div>
-                        <button className="btn btn-primary d-block mx-auto w-25">Login</button>
+                        <div className="row my-2">
+                            <div className="col-md-2">
+                                <label>Contact</label>
+                            </div>
+                            <div className="col-md-8">
+                                <input className="form-control" placeholder="Enter contact" type="number" value={contact} onChange={(e)=>{setContact(e.target.value)}}/>
+                            </div>
+                        </div>
+                        <button className="btn btn-primary d-block mx-auto w-25">Register</button>
                     </form>
                     </div>
                 </div> 

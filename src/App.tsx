@@ -3,9 +3,9 @@ import './App.css';
 import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Master from './components/layout/Master';
-import Login from './components/auth/Login';
 import AdminMaster from './components/layout/AdminMaster';
 import Dashboard from './components/admin/Dashboard';
+import Login from './components/auth/Login';
 
 import AddThemes from './components/admin/themes/AddThemes';
 import ManageThemes from './components/admin/themes/ManageThemes';
@@ -23,6 +23,7 @@ import SingleStory from './components/readers/SingleStory';
 import Story from './components/readers/Story';
 import AddFeedback from './components/readers/AddFeedback';
 import ReaderFeedback from './components/readers/ReaderFeedback';
+import React from 'react';
 
 function App() {
   return (

@@ -3,7 +3,8 @@ import { toast } from "react-toastify"
 import { ClipLoader } from "react-spinners"
 import { Link } from "react-router-dom"
 import ApiServices, { BASE_URL } from "../services/ApiServices"
-export default function Feedback(){
+import React from "react"
+export default function Themes(){
     const [load,setLoad]=useState(true)
     const [data,setData]=useState([])
     const obj={
@@ -11,7 +12,8 @@ export default function Feedback(){
         margin:"0px auto",
     }
     useEffect(()=>{
-        ApiServices.getAllfeedback().then(
+        ApiServices.getReaderTheme({}).then(
+
             (res)=>{
                 if(res.data.success){
                     setData(res.data.data)
@@ -34,38 +36,6 @@ export default function Feedback(){
             }
         )
     },[load])
-    const deleteFeedback=(id,status)=>{
-        setLoad(true)
-        if(status){
-            var status=false
-        }
-        else{
-            var status=true
-        }
-        let data={
-            _id:id,
-            status:status
-        }
-        ApiServices.deletefeedback(data).then(
-            (res)=>{
-                if(res.data.success){
-                    toast.success(res.data.message)
-                }else{
-                    toast.error(res.data.message)
-                }
-                setTimeout(()=>{
-                    setLoad(false)
-                },1000)
-            }
-        ).catch(
-            (err)=>{
-                toast.error("Something went wrong")
-                setTimeout(()=>{
-                    setLoad(false)
-                },1000)
-            }
-        )
-    }
     return(
         <>
         <div className="container-fluid bg-primary py-5 mb-5 page-header">
@@ -73,7 +43,7 @@ export default function Feedback(){
                 <div className="row justify-content-center">
                     <div className="col-lg-10 text-center">
                     <h1 className="display-3 text-white animated slideInDown">
-                        Manage Feedback
+                       Themes
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb justify-content-center">
@@ -91,7 +61,7 @@ export default function Feedback(){
                             className="breadcrumb-item text-white active"
                             aria-current="page"
                         >
-                            Feedback
+                            Themes
                         </li>
                         </ol>
                     </nav>
@@ -100,33 +70,23 @@ export default function Feedback(){
                 </div>
             </div>
         <ClipLoader loading={load} cssOverride={obj} size={100} />
-        <div className={load ? "disabled container table-responsive" :"container table-responsive"}>
-            <table className="table table-bordered table-striped table-hover">
-                <thead className="text-light bg-primary">
-                    <tr>
-                        <th>Sno</th>
-                        <th>User Details</th>
-                        <th>Story</th>
-                        <th>Feedback</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data?.map(
-                        (el,index)=>(
-                            <tr key={index}>
-                                <td>{index+1}</td>
-                                <td>{el?.userId?.name}</td>
-                                <td>{el?.storyId?.name}</td>
-                                <td>{el?.feedback}</td>
-                                <td>
-                                <i className="bi bi-trash fs-3 text-danger" onClick={()=>{deleteFeedback(el?._id)}}></i>
-                                </td>
-                            </tr>
-                        )
-                    )}
-                </tbody>
-            </table>
+        <div className={load ? "disabled container" :"container"}>
+            <div className="row">
+                {
+                    data?.map((el,index)=>(
+                        <div className="col-md-4  p-4" key={index}>
+                            <div className="card ">
+                                <img src={BASE_URL+"/"+(el as any)?.image} style={{height:"250px"}} className="card-img-top"/>
+                                <div className="card-body">
+                                    <h1 className="card-title">{(el as any)?.name}</h1>
+                                    <p>{(el as any)?.description}</p>
+                                    <Link className="btn btn-primary" to={"/viewstory/"+(el as any)?._id}>View Story</Link>
+                                </div>
+                            </div>
+                        </div>
+                ))}
+            </div>
+
         </div>
         </>
     )

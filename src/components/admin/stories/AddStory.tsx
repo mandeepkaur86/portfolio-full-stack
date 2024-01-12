@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { ClipLoader } from "react-spinners"
 import ApiServices from "../../services/ApiServices"
+import React from "react"
 export default function AddStory(){
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
@@ -13,7 +14,7 @@ export default function AddStory(){
     const [load,setLoad]=useState(false)
     const [themes,setThemes]=useState([])
     useEffect(()=>{
-        ApiServices.getAllThemes().then(
+        ApiServices.getAllThemes({}).then(
             (res)=>{
                 setThemes(res.data.data)
             }
@@ -24,7 +25,7 @@ export default function AddStory(){
         e.preventDefault()
         let data=new FormData()
         data.append("name",name)
-        data.append("image",image)
+        data.append("image",imageName)
         data.append("description",description)
         data.append("author",author)
         data.append("story",story)
@@ -98,7 +99,7 @@ export default function AddStory(){
                 </div>
             </div>
         <ClipLoader loading={load} cssOverride={obj} size={100} />
-        <div className={load && "disabled"}>
+        <div className={load ?"":"disabled"}>
             <div className="container-xxl">
                 <div className="row">
                     <div className="col-md-9 offset-md-2">
@@ -116,7 +117,15 @@ export default function AddStory(){
                                 <label>Image</label>
                             </div>
                             <div className="col-md-8">
-                                <input className="form-control" placeholder="Choose Image" type="file" value={imageName} onChange={(e)=>{setImageName(e.target.value);setImage(e.target.files[0])}}/>
+                                <input className="form-control" placeholder="Choose Image" type="file" value={imageName} 
+                                onChange={(e)=>
+                                    {
+                                        if(e.target.files){
+                                        setImageName(e.target.value);
+                                        setImage(e.target.files[0])
+                                        }
+                                    
+                                    }}/>
                             </div>
                         </div>
                         <div className="row my-2">
@@ -127,7 +136,7 @@ export default function AddStory(){
                                 <select className="form-control"   value={themeId} onChange={(e)=>{setThemeId(e.target.value)}}>
                                     <option value="" selected >Select Theme</option>
                                     {themes?.map((el,index)=>(
-                                        <option value={el?._id} key={index}>{el?.name}</option>
+                                        <option value={(el as any)?._id} key={index}>{(el as any)?.name}</option>
                                     ))}
                                 </select>
                             </div>

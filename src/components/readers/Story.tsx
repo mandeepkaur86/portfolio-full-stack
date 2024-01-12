@@ -1,18 +1,29 @@
 import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import { ClipLoader } from "react-spinners"
 import { Link, useParams } from "react-router-dom"
 import ApiServices, { BASE_URL } from "../services/ApiServices"
-import { toast } from "react-toastify"
-import {ClipLoader} from "react-spinners"
-export default function SingleStory(){
-    const param=useParams()
-    const id=param.id
-    const [data,setData]=useState({})
+import React from "react"
+
+export default function Story(){
     const [load,setLoad]=useState(true)
+    const [data,setData]=useState([])
+    const obj={
+        display:"block",
+        margin:"0px auto",
+    }
+    const token=sessionStorage.getItem("token")
+    const param=useParams()
+    const themeId=param.id
     useEffect(()=>{
-        let data={
-            _id:id
+        var data = {};
+        if(!!themeId){
+             data={
+                themeId:themeId
+            }
         }
-        ApiServices.singleReaderStory(data).then(
+        
+        ApiServices.getReaderStory(data).then(
             (res)=>{
                 if(res.data.success){
                     setData(res.data.data)
@@ -34,19 +45,16 @@ export default function SingleStory(){
                 },1000)
             }
         )
-    })
-    const obj={
-        display:"block",
-        margin:"0px auto",
-    }
+    },[load])
+    
     return(
         <>
         <div className="container-fluid bg-primary py-5 mb-5 page-header">
-            <div className="container py-5">
+                <div className="container py-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-10 text-center">
                     <h1 className="display-3 text-white animated slideInDown">
-                    Story
+                       Story
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb justify-content-center">
@@ -70,28 +78,31 @@ export default function SingleStory(){
                     </nav>
                     </div>
                 </div>
-            </div>
-        </div>
-        <ClipLoader loading={load} cssOverride={obj} size={100} />
-        <div className={load ? "disabled container" :"container"}>
-            <div className="row">
-                <div className="col-md-8 offset-md-2">
-                    <div className="card">
-                        <img src={BASE_URL+"/"+data?.image} style={{height:"300px"}} className="card-img-top"/>
-                        <div className="card-body">
-                            <h1>{data?.name}</h1>
-                            <p>{data?.description}</p>
-                            <hr/>
-                            <h3>Story</h3>
-                            <p>{data?.story}</p>
-                        </div>
-                        <div className="card-footer d-flex justify-content-between">
-                            <span>By- {data?.author}</span> 
-                            <Link to={"/addFeedback/"+data?._id} className="btn btn-primary">Add Feedback</Link>
-                        </div>
-                    </div>
                 </div>
             </div>
+        <ClipLoader loading={load} cssOverride={obj} size={100} />
+        <div className={load ? "disabled container" :"container"}>
+        <div className="row">
+                {
+                    data?.map((el,index)=>(
+                        <div className="col-md-4  p-4" key={index}>
+                            <div className="card ">
+                                <img src={BASE_URL+"/"+(el as any)?.image} style={{height:"250px"}} className="card-img-top"/>
+                                <div className="card-body">
+                                    <h3 className="card-title" style={{height:"50px"}}>{(el as any)?.name}</h3>
+                                    <p style={{textOverflow:"ellipsis",height:"50px",overflow:"hidden",}}>{(el as any)?.description}</p>
+                                    <Link className="btn btn-primary" to={
+                                        !!token || index==0?`/singleStory/${(el as any)?._id}`:"/login"
+                                    }>View Story</Link>
+                                </div>
+                                
+                            </div>
+                        </div>
+                ))}
+            </div>
+   
+            
+
         </div>
         </>
     )

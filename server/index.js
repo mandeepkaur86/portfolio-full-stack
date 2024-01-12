@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const cors = require('cors')
+const cors = require('cors')   
 const db = require('./config/db')
 
 const seed = require('./config/seed')

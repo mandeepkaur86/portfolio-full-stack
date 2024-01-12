@@ -3,6 +3,7 @@ import { toast } from "react-toastify"
 import { ClipLoader } from "react-spinners"
 import ApiServices, { BASE_URL } from "../../services/ApiServices"
 import { useNavigate, useParams } from "react-router-dom"
+import React from "react"
 export default function UpdateStory(){
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
@@ -15,16 +16,18 @@ export default function UpdateStory(){
     const [themes,setThemes]=useState([])
     const [previousImage,setPreviousImage]=useState("")
     let param=useParams()
-    let id=param.id
+    let id = param.id ? param.id : ""
     useEffect(()=>{
-        ApiServices.getAllThemes().then(
+
+        let data={
+            _id:id
+        }
+        ApiServices.getAllThemes(data).then(
             (res)=>{
                 setThemes(res.data.data)
             }
         )
-        let data={
-            _id:id
-        }
+        
         ApiServices.singleStory(data).then(
             (res)=>{
                 if(res.data.success){
@@ -66,7 +69,7 @@ export default function UpdateStory(){
         data.append("themeId",themeId)
         data.append("_id",id)
         if(!!imageName){
-            data.append("image",image)
+            data.append("image",imageName)
         }
         ApiServices.updateStory(data).then(
             (res)=>{
@@ -130,7 +133,7 @@ export default function UpdateStory(){
                 </div>
             </div>
         <ClipLoader loading={load} cssOverride={obj} size={100} />
-        <div className={load && "disabled"}>
+        <div className={load?"":"disabled"}>
             <div className="container-xxl">
             <div className="row my-3">
                     <div className="col-md-4 offset-md-4">
@@ -153,7 +156,17 @@ export default function UpdateStory(){
                                 <label>Image</label>
                             </div>
                             <div className="col-md-8">
-                                <input className="form-control" placeholder="Choose Image" type="file" value={imageName} onChange={(e)=>{setImageName(e.target.value);setImage(e.target.files[0])}}/>
+                                <input className="form-control" placeholder="Choose Image" type="file" value={imageName} 
+                                onChange =
+                                { (e)=>
+                                    {
+                                        if(e.target.files)
+                                        {
+                                        setImageName(e.target.value);
+                                         setImage(e.target.files[0])
+                                        }
+                                    }
+                                }/>
                             </div>
                         </div>
                         <div className="row my-2">
@@ -164,7 +177,7 @@ export default function UpdateStory(){
                                 <select className="form-control"   value={themeId} onChange={(e)=>{setThemeId(e.target.value)}}>
                                     <option value="" selected >Select Theme</option>
                                     {themes?.map((el,index)=>(
-                                        <option value={el?._id} key={index}>{el?.name}</option>
+                                        <option value={(el as any)?._id} key={index}>{(el as any)?.name}</option>
                                     ))}
                                 </select>
                             </div>

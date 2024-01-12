@@ -1,25 +1,22 @@
-import { useNavigate, useParams } from "react-router-dom";
-import {  useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
+import ApiServices, { BASE_URL } from "../services/ApiServices"
 import { toast } from "react-toastify"
 import {ClipLoader} from "react-spinners"
-import ApiServices from "../services/ApiServices";
-export default function AddFeedback(){
+import React from "react"
+export default function SingleStory(){
     const param=useParams()
-    const storyId=param.id
-    const [story,setStory]=useState({})
-    const obj={
-        display:"block",
-        margin:"0px auto",
-    }
-    const nav=useNavigate()
+    const id=param.id
+    const [data,setData]=useState({})
+    const [load,setLoad]=useState(true)
     useEffect(()=>{
         let data={
-            _id:storyId
+            _id:id
         }
         ApiServices.singleReaderStory(data).then(
             (res)=>{
                 if(res.data.success){
-                    setStory(res.data.data)
+                    setData(res.data.data)
                     setTimeout(()=>{
                         setLoad(false)
                     },1000)
@@ -38,40 +35,10 @@ export default function AddFeedback(){
                 },1000)
             }
         )
-    },[])
-    const [load,setLoad]=useState(true)
-    const [rating,setRating]=useState("")
-    const handleForm=(e)=>{
-        setLoad(true)
-        e.preventDefault()
-        let data={
-            userId:sessionStorage.getItem("userId"),
-            storyId:storyId,
-            feedback:rating
-        }
-        ApiServices.addFeedback(data).then(
-            (res)=>{
-                if(res.data.success){
-                    toast.success(res.data.message)
-                    setTimeout(()=>{
-                        nav("/feedback")
-                    },1000)
-                }
-                else{
-                    toast.error(res.data.message)
-                    setTimeout(()=>{
-                        setLoad(false)
-                    },1000)
-                }
-            }
-        ).catch(
-            (err)=>{
-                toast.error("Something went Wrong!! Try Again later!!")
-                setTimeout(()=>{
-                    setLoad(false)
-                },1000)
-            }
-        )
+    })
+    const obj={
+        display:"block",
+        margin:"0px auto",
     }
     return(
         <>
@@ -80,7 +47,7 @@ export default function AddFeedback(){
                 <div className="row justify-content-center">
                     <div className="col-lg-10 text-center">
                     <h1 className="display-3 text-white animated slideInDown">
-                    Feedback
+                    Story
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb justify-content-center">
@@ -98,7 +65,7 @@ export default function AddFeedback(){
                             className="breadcrumb-item text-white active"
                             aria-current="page"
                         >
-                            Feedback
+                            Story
                         </li>
                         </ol>
                     </nav>
@@ -110,12 +77,20 @@ export default function AddFeedback(){
         <div className={load ? "disabled container" :"container"}>
             <div className="row">
                 <div className="col-md-8 offset-md-2">
-                    <h1>Your review Matters to Us!!</h1>
-                    <p>Add your review on Story {story?.name}</p>
-                    <form onSubmit={handleForm}>
-                    <input className="form-control my-3" type="text" placeholder="Write your review"  value={rating} onChange={(e)=>{setRating(e.target.value)}} required/>
-                    <button className="btn btn-primary d-block mx-auto w-25 ">Add</button>
-                    </form>
+                    <div className="card">
+                        <img src={BASE_URL+"/"+(data as any)?.image} style={{height:"300px"}} className="card-img-top"/>
+                        <div className="card-body">
+                            <h1>{(data as any)?.name}</h1>
+                            <p>{(data as any)?.description}</p>
+                            <hr/>
+                            <h3>Story</h3>
+                            <p>{(data as any)?.story}</p>
+                        </div>
+                        <div className="card-footer d-flex justify-content-between">
+                            <span>By- {(data as any)?.author}</span> 
+                            <Link to={"/addFeedback/"+(data as any)?._id} className="btn btn-primary">Add Feedback</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
